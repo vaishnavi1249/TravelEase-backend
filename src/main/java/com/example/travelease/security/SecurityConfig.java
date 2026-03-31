@@ -28,10 +28,9 @@ public class SecurityConfig {
     private JwtFilter jwtFilter;
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance(); // Simplification: we store plain text passwords as per user's
-                                                  // existing prompt. Can upgrade to BCrypt.
-    }
+public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+}
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
