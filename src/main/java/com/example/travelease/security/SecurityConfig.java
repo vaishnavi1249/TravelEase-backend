@@ -69,7 +69,9 @@ public PasswordEncoder passwordEncoder() {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
+
         CorsConfiguration configuration = new CorsConfiguration();
+<<<<<<< HEAD
         configuration.setAllowedOrigins(Arrays.asList(
     "http://localhost:3000",
     "travel-ease-frontend-inky.vercel.app"   
@@ -77,8 +79,32 @@ public PasswordEncoder passwordEncoder() {
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         configuration.setExposedHeaders(Arrays.asList("Authorization"));
+=======
+
+        configuration.setAllowedOriginPatterns(Arrays.asList(
+                "http://localhost:3000",
+                "https://*.vercel.app",
+                "https://travel-ease-frontend-inky.vercel.app" 
+        ));
+
+        configuration.setAllowedMethods(Arrays.asList(
+                "GET", "POST", "PUT", "DELETE", "OPTIONS"
+        ));
+
+        configuration.setAllowedHeaders(Arrays.asList(
+                "Authorization", "Content-Type"
+        ));
+
+        configuration.setExposedHeaders(Arrays.asList(
+                "Authorization"
+        ));
+
+        configuration.setAllowCredentials(true);
+
+>>>>>>> 2c988b2 (fix: production CORS + env config)
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
+
         return source;
     }
 }
